@@ -1,3 +1,4 @@
+require("dotenv/config");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -19,10 +20,13 @@ app.use((req, res, next) => {
 const Meta = mongoose.model("Meta");
 
 mongoose
-  .connect("mongodb://localhost/gestor-metas", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_CLUSTER}.8sax9.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Conexão com mongo realizada com sucesso.");
   })
