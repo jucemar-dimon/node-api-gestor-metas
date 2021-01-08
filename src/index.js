@@ -62,6 +62,8 @@ app.post("/metas", async (req, res) => {
   });
 });
 
-app.listen(8080, () => {
-  console.log("Servidor iniciado na porta 8080");
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log(`Servidor iniciado na porta ${port}`);
 });
